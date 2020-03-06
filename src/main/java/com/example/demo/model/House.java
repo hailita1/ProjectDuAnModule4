@@ -29,4 +29,6 @@ public class House {
     private String moTaChung;
 
     private double giaTienTheoDem;
+
+    private String trangThai;
 }
