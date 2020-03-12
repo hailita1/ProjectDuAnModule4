@@ -11,9 +11,9 @@ public interface HouseRepository extends JpaRepository<House, Long> {
 
     Iterable<House> findAllByDiaChiContains(String diaChi);
 
-    Iterable<House> findAllBySoLuongPhongNguContainsOrSoLuongPhongTamContains(String soLuongPhongNgu, String soLuongPhongTam);
+    Iterable<House> findAllBySoLuongPhongNguContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String soLuongPhongTam);
 
-    Iterable<House> findAllBySoLuongPhongNguContainsOrDiaChiContains(String soLuongPhongNgu, String diaChi);
+    Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContains(String soLuongPhongNgu, String diaChi);
 
-    Iterable<House> findAllBySoLuongPhongNguContainsOrDiaChiContainsOrSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam);
+    Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam);
 }

@@ -47,17 +47,18 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public Iterable<House> findAllBySoLuongPhongNguContainsOrSoLuongPhongTamContains(String soLuongPhongNgu, String soLuongPhongTam) {
-        return houseRepository.findAllBySoLuongPhongNguContainsOrSoLuongPhongTamContains(soLuongPhongNgu, soLuongPhongTam);
+    public Iterable<House> findAllBySoLuongPhongNguContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String soLuongPhongTam) {
+        return houseRepository.findAllBySoLuongPhongNguContainsAndSoLuongPhongTamContains(soLuongPhongNgu, soLuongPhongNgu);
     }
 
     @Override
-    public Iterable<House> findAllBySoLuongPhongNguContainsOrDiaChiContains(String soLuongPhongNgu, String diaChi) {
-        return houseRepository.findAllBySoLuongPhongNguContainsOrDiaChiContains(soLuongPhongNgu, diaChi);
+    public Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContains(String soLuongPhongNgu, String diaChi) {
+        return findAllBySoLuongPhongNguContainsAndDiaChiContains(soLuongPhongNgu, diaChi);
     }
 
     @Override
-    public Iterable<House> findAllBySoLuongPhongNguContainsOrDiaChiContainsOrSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam) {
-        return houseRepository.findAllBySoLuongPhongNguContainsOrDiaChiContainsOrSoLuongPhongTamContains(soLuongPhongNgu, diaChi, soLuongPhongTam);
+    public Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam) {
+        return findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(soLuongPhongNgu, diaChi, soLuongPhongTam);
     }
+
 }
