@@ -37,7 +37,7 @@ public class HouseController {
     public ResponseEntity<Void> createHouse(@RequestBody House house, UriComponentsBuilder ucBuilder) {
         houseService.save(house);
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/houses/{id}").buildAndExpand(house.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/houses/{id}").buildAndExpand(house.getIdNha()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
@@ -48,9 +48,7 @@ public class HouseController {
         if (houseServiceById == null) {
             return new ResponseEntity<House>(HttpStatus.NOT_FOUND);
         }
-        houseServiceById.setTenCanNha(house.getTenCanNha());
-        houseServiceById.setLoaiNha(house.getLoaiNha());
-        houseServiceById.setLoaiPhong(house.getLoaiPhong());
+        houseServiceById.setTenNha(house.getTenNha());
         houseServiceById.setDiaChi(house.getDiaChi());
         houseServiceById.setSoLuongPhongNgu(house.getSoLuongPhongNgu());
         houseServiceById.setSoLuongPhongTam(house.getSoLuongPhongTam());
