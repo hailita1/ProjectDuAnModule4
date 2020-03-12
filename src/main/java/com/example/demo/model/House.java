@@ -31,20 +31,9 @@ public class House {
     @JoinColumn(name = "loaiPhong_id")
     private CategoryRoom categoryRoom;
 
-    @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
-    private List<Image> images;
-
     @ManyToOne
     @JoinColumn(name = "chunha_id")
     private Host host;
-
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
 
     public Host getHost() {
         return host;

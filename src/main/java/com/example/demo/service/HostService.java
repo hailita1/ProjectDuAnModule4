@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Host;
-import com.example.demo.model.House;
 
 public interface HostService {
     Iterable<Host> findAll();
