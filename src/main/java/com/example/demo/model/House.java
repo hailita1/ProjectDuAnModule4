@@ -12,9 +12,11 @@ import javax.persistence.Id;
 public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idNha;
 
-    private String tenCanNha;
+    private Long idChuNha;
+
+    private String tenNha;
 
     private String loaiNha;
 
