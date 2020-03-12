@@ -1,14 +1,13 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idNha;
-
-    private Long idChuNha;
 
     private String tenNha;
 
@@ -24,6 +23,38 @@ public class House {
 
     private String trangThai;
 
+    @ManyToOne
+    @JoinColumn(name = "loaiNha_id")
+    private CategoryHouse categoryHouse;
+
+    @ManyToOne
+    @JoinColumn(name = "loaiPhong_id")
+    private CategoryRoom categoryRoom;
+
+    @OneToMany(targetEntity = Image.class, fetch = FetchType.EAGER)
+    private List<Image> images;
+
+    @ManyToOne
+    @JoinColumn(name = "chunha_id")
+    private Host host;
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public Host getHost() {
+        return host;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+
+    }
+
     public Long getIdNha() {
         return idNha;
     }
@@ -32,13 +63,6 @@ public class House {
         this.idNha = idNha;
     }
 
-    public Long getIdChuNha() {
-        return idChuNha;
-    }
-
-    public void setIdChuNha(Long idChuNha) {
-        this.idChuNha = idChuNha;
-    }
 
     public String getTenNha() {
         return tenNha;
@@ -111,12 +135,4 @@ public class House {
     public void setCategoryRoom(CategoryRoom categoryRoom) {
         this.categoryRoom = categoryRoom;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "loaiNha_id")
-    private CategoryHouse categoryHouse;
-
-    @ManyToOne
-    @JoinColumn(name = "loaiPhong_id")
-    private CategoryRoom categoryRoom;
 }

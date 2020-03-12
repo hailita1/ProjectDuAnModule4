@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.CategoryHouse;
 import com.example.demo.model.CategoryRoom;
-import com.example.demo.service.impl.CategoryHouseServiceImpl;
 import com.example.demo.service.impl.CategoryRoomServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

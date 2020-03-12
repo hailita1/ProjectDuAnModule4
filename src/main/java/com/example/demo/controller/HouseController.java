@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.House;
 import com.example.demo.service.impl.HouseServiceImpl;
+import com.example.demo.service.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class HouseController {
     @Autowired
     private HouseServiceImpl houseService;
+
+    @Autowired
+    private ImageServiceImpl imageService;
 
     @RequestMapping(value = "/api/houses", method = RequestMethod.GET)
     public ResponseEntity<Iterable<House>> listAllHouse() {
