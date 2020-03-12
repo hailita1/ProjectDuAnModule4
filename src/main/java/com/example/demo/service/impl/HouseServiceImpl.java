@@ -30,4 +30,34 @@ public class HouseServiceImpl implements HouseService {
     public void remove(Long id) {
         this.houseRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<House> findAllBySoLuongPhongNguContains(String soLuongPhongNgu) {
+        return houseRepository.findAllBySoLuongPhongNguContains(soLuongPhongNgu);
+    }
+
+    @Override
+    public Iterable<House> findAllBySoLuongPhongTamContains(String soLuongPhongTam) {
+        return houseRepository.findAllBySoLuongPhongTamContains(soLuongPhongTam);
+    }
+
+    @Override
+    public Iterable<House> findAllByDiaChiContains(String diaChi) {
+        return houseRepository.findAllByDiaChiContains(diaChi);
+    }
+
+    @Override
+    public Iterable<House> findAllBySoLuongPhongNguContainsOrSoLuongPhongTamContains(String soLuongPhongNgu, String soLuongPhongTam) {
+        return houseRepository.findAllBySoLuongPhongNguContainsOrSoLuongPhongTamContains(soLuongPhongNgu, soLuongPhongTam);
+    }
+
+    @Override
+    public Iterable<House> findAllBySoLuongPhongNguContainsOrDiaChiContains(String soLuongPhongNgu, String diaChi) {
+        return houseRepository.findAllBySoLuongPhongNguContainsOrDiaChiContains(soLuongPhongNgu, diaChi);
+    }
+
+    @Override
+    public Iterable<House> findAllBySoLuongPhongNguContainsOrDiaChiContainsOrSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam) {
+        return houseRepository.findAllBySoLuongPhongNguContainsOrDiaChiContainsOrSoLuongPhongTamContains(soLuongPhongNgu, diaChi, soLuongPhongTam);
+    }
 }

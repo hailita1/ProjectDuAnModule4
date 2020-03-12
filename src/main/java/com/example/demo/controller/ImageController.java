@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.House;
 import com.example.demo.model.Image;
 import com.example.demo.service.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

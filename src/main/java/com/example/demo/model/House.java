@@ -13,9 +13,9 @@ public class House {
 
     private String diaChi;
 
-    private int soLuongPhongNgu;
+    private String soLuongPhongNgu;
 
-    private int soLuongPhongTam;
+    private String soLuongPhongTam;
 
     private String moTaChung;
 
@@ -69,19 +69,19 @@ public class House {
         this.diaChi = diaChi;
     }
 
-    public int getSoLuongPhongNgu() {
+    public String getSoLuongPhongNgu() {
         return soLuongPhongNgu;
     }
 
-    public void setSoLuongPhongNgu(int soLuongPhongNgu) {
+    public void setSoLuongPhongNgu(String soLuongPhongNgu) {
         this.soLuongPhongNgu = soLuongPhongNgu;
     }
 
-    public int getSoLuongPhongTam() {
+    public String getSoLuongPhongTam() {
         return soLuongPhongTam;
     }
 
-    public void setSoLuongPhongTam(int soLuongPhongTam) {
+    public void setSoLuongPhongTam(String soLuongPhongTam) {
         this.soLuongPhongTam = soLuongPhongTam;
     }
 

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.House;
+import com.example.demo.model.Image;
 import com.example.demo.service.impl.HouseServiceImpl;
 import com.example.demo.service.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class HouseController {
     @Autowired
     private HouseServiceImpl houseService;
-
-    @Autowired
-    private ImageServiceImpl imageService;
 
     @RequestMapping(value = "/api/houses", method = RequestMethod.GET)
     public ResponseEntity<Iterable<House>> listAllHouse() {
@@ -72,5 +70,33 @@ public class HouseController {
         }
         houseService.remove(id);
         return new ResponseEntity<House>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/api/findAllBySoLuongPhongNguContains")
+    public ResponseEntity<Iterable<House>> findAllBySoLuongPhongNguContains(@RequestParam("house") String house) {
+        Iterable<House> houses = houseService.findAllBySoLuongPhongNguContains(house);
+        if (house == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/findAllBySoLuongPhongTamContains")
+    public ResponseEntity<Iterable<House>> findAllBySoLuongPhongTamContains(@RequestParam("house") String house) {
+        Iterable<House> houses = houseService.findAllBySoLuongPhongTamContains(house);
+        if (house == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/api/findAllByDiaChiContains")
+    public ResponseEntity<Iterable<House>> findAllByDiaChiContains(@RequestParam("house") String house) {
+        Iterable<House> houses = houseService.findAllByDiaChiContains(house);
+        if (house == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
     }
 }
