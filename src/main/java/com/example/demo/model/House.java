@@ -35,14 +35,11 @@ public class House {
     @JoinColumn(name = "chunha_id")
     private Host host;
 
-    public Host getHost() {
-        return host;
-    }
 
-    public void setHost(Host host) {
-        this.host = host;
 
-    }
+
+    @OneToMany(targetEntity = Image.class, mappedBy = "house")
+    private List<Image> picture;
 
     public Long getIdNha() {
         return idNha;
@@ -123,5 +120,21 @@ public class House {
 
     public void setCategoryRoom(CategoryRoom categoryRoom) {
         this.categoryRoom = categoryRoom;
+    }
+
+    public Host getHost() {
+        return host;
+    }
+
+    public void setHost(Host host) {
+        this.host = host;
+    }
+
+    public List<Image> getPicture() {
+        return picture;
+    }
+
+    public void setPicture(List<Image> picture) {
+        this.picture = picture;
     }
 }

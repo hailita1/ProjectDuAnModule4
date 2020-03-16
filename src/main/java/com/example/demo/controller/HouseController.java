@@ -17,6 +17,9 @@ public class HouseController {
     @Autowired
     private HouseServiceImpl houseService;
 
+    @Autowired
+    private ImageServiceImpl imageService;
+
     @RequestMapping(value = "/api/houses", method = RequestMethod.GET)
     public ResponseEntity<Iterable<House>> listAllHouse() {
         Iterable<House> houses = houseService.findAll();

@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -28,6 +30,7 @@ public class Image {
         this.tenAnh = tenAnh;
     }
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_nha")
     private House house;
@@ -39,4 +42,5 @@ public class Image {
     public void setHouse(House house) {
         this.house = house;
     }
+
 }
