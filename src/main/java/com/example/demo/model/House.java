@@ -1,10 +1,15 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
+@Data
 @Entity
-public class House {
+public class House implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idNha;
@@ -36,105 +41,9 @@ public class House {
     private Host host;
 
 
-
-
     @OneToMany(targetEntity = Image.class, mappedBy = "house")
     private List<Image> picture;
 
-    public Long getIdNha() {
-        return idNha;
-    }
-
-    public void setIdNha(Long idNha) {
-        this.idNha = idNha;
-    }
-
-
-    public String getTenNha() {
-        return tenNha;
-    }
-
-    public void setTenNha(String tenNha) {
-        this.tenNha = tenNha;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
-
-    public String getSoLuongPhongNgu() {
-        return soLuongPhongNgu;
-    }
-
-    public void setSoLuongPhongNgu(String soLuongPhongNgu) {
-        this.soLuongPhongNgu = soLuongPhongNgu;
-    }
-
-    public String getSoLuongPhongTam() {
-        return soLuongPhongTam;
-    }
-
-    public void setSoLuongPhongTam(String soLuongPhongTam) {
-        this.soLuongPhongTam = soLuongPhongTam;
-    }
-
-    public String getMoTaChung() {
-        return moTaChung;
-    }
-
-    public void setMoTaChung(String moTaChung) {
-        this.moTaChung = moTaChung;
-    }
-
-    public double getGiaTienTheoDem() {
-        return giaTienTheoDem;
-    }
-
-    public void setGiaTienTheoDem(double giaTienTheoDem) {
-        this.giaTienTheoDem = giaTienTheoDem;
-    }
-
-    public String getTrangThai() {
-        return trangThai;
-    }
-
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    public CategoryHouse getCategoryHouse() {
-        return categoryHouse;
-    }
-
-    public void setCategoryHouse(CategoryHouse categoryHouse) {
-        this.categoryHouse = categoryHouse;
-    }
-
-    public CategoryRoom getCategoryRoom() {
-        return categoryRoom;
-    }
-
-    public void setCategoryRoom(CategoryRoom categoryRoom) {
-        this.categoryRoom = categoryRoom;
-    }
-
-    public Host getHost() {
-        return host;
-    }
-
-    public void setHost(Host host) {
-        this.host = host;
-    }
-
-    public List<Image> getPicture() {
-        return picture;
-    }
-
-    public void setPicture(List<Image> picture) {
-        this.picture = picture;
-    }
+    @OneToMany(mappedBy = "customer")
+    private List<Deal> deals;
 }

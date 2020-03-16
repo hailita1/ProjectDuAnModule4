@@ -1,10 +1,13 @@
 package com.example.demo.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Data
 @Entity
 public class Host {
     @Id
@@ -13,39 +16,4 @@ public class Host {
     private String password;
     private String hoTen;
     private String diaChi;
-
-    public Host() {
-    }
-
-    public Long getIdChuNha() {
-        return idChuNha;
-    }
-
-    public void setIdChuNha(Long idChuNha) {
-        this.idChuNha = idChuNha;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getHoTen() {
-        return hoTen;
-    }
-
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
 }
