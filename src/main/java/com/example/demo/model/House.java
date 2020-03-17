@@ -1,15 +1,13 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Entity
-public class House implements Serializable {
+public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idNha;

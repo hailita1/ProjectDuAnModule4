@@ -17,4 +17,12 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "id_nha")
     private House house;
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
 }

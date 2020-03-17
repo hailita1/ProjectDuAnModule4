@@ -9,9 +9,9 @@ import java.util.Date;
 @Data
 @Entity
 public class Deal {
-
-    @EmbeddedId
-    private CustomerHouseId customerHouseId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idGiaoDich;
 
     @Column
     private Date ngayDen;

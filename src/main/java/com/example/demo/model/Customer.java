@@ -1,18 +1,18 @@
 package com.example.demo.model;
+
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Entity
-public class Customer implements Serializable {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCustomer;
 
-    @Column
+    @Column()
     private String userName;
 
     @Column
@@ -24,7 +24,7 @@ public class Customer implements Serializable {
     @Column
     private String ten;
 
-    @Column
+    @Column()
     private int cmnd;
 
     @Column

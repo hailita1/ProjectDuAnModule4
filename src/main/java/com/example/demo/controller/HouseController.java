@@ -41,10 +41,38 @@ public class HouseController {
     @RequestMapping(value = "/api/houses", method = RequestMethod.POST)
     public ResponseEntity<Void> createHouse(@RequestBody House house, UriComponentsBuilder ucBuilder) {
         houseService.save(house);
+        Iterable<House> houses = houseService.findAll();
+        House house1 = new House();
+        for (House house2 : houses) {
+            house1 = house2;
+        }
+        for (Image picture : house.getPicture()) {
+            picture.setHouse(house1);
+            imageService.save(picture);
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/houses/{id}").buildAndExpand(house.getIdNha()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
+
+//    @PostMapping("/api/houses")
+//    public ResponseEntity createHouse(@RequestBody House house) {
+//        try {
+//            houseService.save(house);
+//            Iterable<House> houses = houseService.findAll();
+//            House house1 = new House();
+//            for (House house2 : houses) {
+//                house1 = house2;
+//            }
+//            for (Image picture : house.getPicture()) {
+//                picture.setHouse(house1);
+//                imageService.save(picture);
+//            }
+//            return new ResponseEntity(HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     @RequestMapping(value = "/api/houses/{id}", method = RequestMethod.PUT)
     public ResponseEntity<House> updateHouse(@PathVariable("id") Long id, @RequestBody House house) {
@@ -60,7 +88,6 @@ public class HouseController {
         houseServiceById.setMoTaChung(house.getMoTaChung());
         houseServiceById.setGiaTienTheoDem(house.getGiaTienTheoDem());
         houseServiceById.setTrangThai(house.getTrangThai());
-
         houseService.save(houseServiceById);
         return new ResponseEntity<House>(HttpStatus.OK);
     }
