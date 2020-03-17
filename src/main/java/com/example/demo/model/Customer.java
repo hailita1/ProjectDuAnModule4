@@ -12,7 +12,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idCustomer;
 
-    @Column()
+    @Column
     private String userName;
 
     @Column
@@ -24,7 +24,7 @@ public class Customer {
     @Column
     private String ten;
 
-    @Column()
+    @Column
     private int cmnd;
 
     @Column
