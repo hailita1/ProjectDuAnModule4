@@ -20,6 +20,4 @@ public interface HouseRepository extends JpaRepository<House, Long> {
     Iterable<House> findAllByGiaTienTheoDemBetween(Double dauDuoi, Double dauTren);
 
     Iterable<House> findAllByTrangThai(String trangThai);
-
-
 }

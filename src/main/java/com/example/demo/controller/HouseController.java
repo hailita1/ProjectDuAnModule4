@@ -120,4 +120,6 @@ public class HouseController {
         }
         return new ResponseEntity<>(houses, HttpStatus.OK);
     }
+
+
 }
