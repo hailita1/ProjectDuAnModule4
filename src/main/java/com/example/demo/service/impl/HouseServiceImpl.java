@@ -32,43 +32,29 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public Iterable<House> findAllBySoLuongPhongNguContains(String soLuongPhongNgu) {
-        return houseRepository.findAllBySoLuongPhongNguContains(soLuongPhongNgu);
+    public Iterable<House> findAllBySoLuongPhongNguLessThanEqualAndTrangThai(int soLuongPhongNgu, String trangThai) {
+        return houseRepository.findAllBySoLuongPhongNguLessThanEqualAndTrangThai(soLuongPhongNgu, trangThai);
     }
 
     @Override
-    public Iterable<House> findAllBySoLuongPhongTamContains(String soLuongPhongTam) {
-        return houseRepository.findAllBySoLuongPhongTamContains(soLuongPhongTam);
+    public Iterable<House> findAllBySoLuongPhongTamLessThanEqualAndTrangThai(int soLuongPhongTam, String trangThai) {
+        return houseRepository.findAllBySoLuongPhongTamLessThanEqualAndTrangThai(soLuongPhongTam, trangThai);
     }
 
     @Override
-    public Iterable<House> findAllByDiaChiContains(String diaChi) {
-        return houseRepository.findAllByDiaChiContains(diaChi);
+    public Iterable<House> findAllByDiaChiContainsAndTrangThai(String diaChi, String trangThai) {
+        return houseRepository.findAllByDiaChiContainsAndTrangThai(diaChi, trangThai);
     }
 
-    @Override
-    public Iterable<House> findAllBySoLuongPhongNguContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String soLuongPhongTam) {
-        return houseRepository.findAllBySoLuongPhongNguContainsAndSoLuongPhongTamContains(soLuongPhongNgu, soLuongPhongNgu);
-    }
 
     @Override
-    public Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContains(String soLuongPhongNgu, String diaChi) {
-        return findAllBySoLuongPhongNguContainsAndDiaChiContains(soLuongPhongNgu, diaChi);
-    }
-
-    @Override
-    public Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam) {
-        return findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(soLuongPhongNgu, diaChi, soLuongPhongTam);
+    public Iterable<House> findAllByGiaTienTheoDemBetweenAndTrangThai(Double dauDuoi, Double dauTren, String trangThai) {
+        return houseRepository.findAllByGiaTienTheoDemBetweenAndTrangThai(dauDuoi, dauTren, trangThai);
     }
 
     @Override
     public Iterable<House> findAllByTrangThai(String trangThai) {
         return houseRepository.findAllByTrangThai(trangThai);
-    }
-
-    @Override
-    public Iterable<House> findAllByGiaTienTheoDemBetween(Double dauDuoi, Double dauTren) {
-        return houseRepository.findAllByGiaTienTheoDemBetween(dauDuoi, dauTren);
     }
 
 }

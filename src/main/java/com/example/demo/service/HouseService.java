@@ -11,19 +11,13 @@ public interface HouseService {
 
     void remove(Long id);
 
-    Iterable<House> findAllBySoLuongPhongNguContains(String soLuongPhongNgu);
+    Iterable<House> findAllBySoLuongPhongNguLessThanEqualAndTrangThai(int soLuongPhongNgu, String trangThai);
 
-    Iterable<House> findAllBySoLuongPhongTamContains(String soLuongPhongTam);
+    Iterable<House> findAllBySoLuongPhongTamLessThanEqualAndTrangThai(int soLuongPhongTam, String trangThai);
 
-    Iterable<House> findAllByDiaChiContains(String diaChi);
+    Iterable<House> findAllByDiaChiContainsAndTrangThai(String diaChi, String trangThai);
 
-    Iterable<House> findAllBySoLuongPhongNguContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String soLuongPhongTam);
-
-    Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContains(String soLuongPhongNgu, String diaChi);
-
-    Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam);
-
-    Iterable<House> findAllByGiaTienTheoDemBetween(Double dauDuoi, Double dauTren);
+    Iterable<House> findAllByGiaTienTheoDemBetweenAndTrangThai(Double dauDuoi, Double dauTren, String trangThai);
 
     Iterable<House> findAllByTrangThai(String trangThai);
 }

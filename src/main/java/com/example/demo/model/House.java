@@ -16,9 +16,9 @@ public class House {
 
     private String diaChi;
 
-    private String soLuongPhongNgu;
+    private int soLuongPhongNgu;
 
-    private String soLuongPhongTam;
+    private int soLuongPhongTam;
 
     private String moTaChung;
 
