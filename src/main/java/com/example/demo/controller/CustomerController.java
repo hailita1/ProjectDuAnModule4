@@ -1,18 +1,18 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Customer;
+import com.example.demo.model.Deal;
 import com.example.demo.model.Host;
 import com.example.demo.service.impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @CrossOrigin("*")
-@Controller
+@RestController
 public class CustomerController {
     @Autowired
     private CustomerServiceImpl customerServicel;
@@ -44,11 +44,11 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/api/customers/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Host> updateCustomer(@PathVariable("id") Long id, @RequestBody Customer customer) {
+    public ResponseEntity<Customer> updateCustomer(@PathVariable("id") Long id, @RequestBody Customer customer) {
         Customer customer1 = customerServicel.findById(id);
 
         if (customer1 == null) {
-            return new ResponseEntity<Host>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
         }
         customer1.setDiaChi(customer.getDiaChi());
         customer1.setCmnd(customer.getCmnd());
@@ -58,16 +58,16 @@ public class CustomerController {
         customer1.setUserName(customer.getUserName());
         customer1.setSdt(customer.getSdt());
         customerServicel.save(customer1);
-        return new ResponseEntity<Host>(HttpStatus.OK);
+        return new ResponseEntity<Customer>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/api/customers/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Host> deleteCustomer(@PathVariable("id") Long id) {
+    public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") Long id) {
         Customer customer = customerServicel.findById(id);
         if (customer == null) {
-            return new ResponseEntity<Host>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
         }
         customerServicel.remove(id);
-        return new ResponseEntity<Host>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Customer>(HttpStatus.NO_CONTENT);
     }
 }
