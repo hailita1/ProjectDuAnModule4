@@ -111,4 +111,13 @@ public class HouseController {
         }
         return new ResponseEntity<>(houses, HttpStatus.OK);
     }
+
+    @GetMapping("/api/findAllByGiaTienTheoDemBetween")
+    public ResponseEntity<Iterable<House>> findAllByGiaTienTheoDemBetween(@RequestParam("dauDuoi") String dauDuoi, @RequestParam("dauTren") String dauTren) {
+        Iterable<House> houses = houseService.findAllByGiaTienTheoDemBetween(Double.parseDouble(dauDuoi), Double.parseDouble(dauTren));
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
 }

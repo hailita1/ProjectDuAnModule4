@@ -24,4 +24,6 @@ public interface HouseService {
     Iterable<House> findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(String soLuongPhongNgu, String diaChi, String soLuongPhongTam);
 
     Iterable<House> findAllByTrangThai(String trangThai);
+
+    Iterable<House> findAllByGiaTienTheoDemBetween(Double dauDuoi, Double dauTren);
 }

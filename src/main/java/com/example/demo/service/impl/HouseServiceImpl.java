@@ -66,4 +66,9 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.findAllByTrangThai(trangThai);
     }
 
+    @Override
+    public Iterable<House> findAllByGiaTienTheoDemBetween(Double dauDuoi, Double dauTren) {
+        return houseRepository.findAllByGiaTienTheoDemBetween(dauDuoi, dauTren);
+    }
+
 }
