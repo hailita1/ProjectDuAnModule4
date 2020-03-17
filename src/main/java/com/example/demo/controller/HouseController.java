@@ -47,9 +47,9 @@ public class HouseController {
         for (House house2 : houses) {
             house1 = house2;
         }
-        for (Image picture : house.getPicture()) {
-            picture.setHouse(house1);
-            imageService.save(picture);
+        for (Image image : house.getPicture()) {
+            image.setHouse(house1);
+            imageService.save(image);
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("/houses/{id}").buildAndExpand(house.getIdNha()).toUri());
