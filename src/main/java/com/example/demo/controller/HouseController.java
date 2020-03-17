@@ -29,6 +29,15 @@ public class HouseController {
         return new ResponseEntity<Iterable<House>>(houses, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/api/housesss", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<House>> listAllHouse1() {
+        Iterable<House> houses = houseService.findAll();
+        if (houses == null) {
+            return new ResponseEntity<Iterable<House>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<Iterable<House>>(houses, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/api/houses/{id}", method = RequestMethod.GET)
     public ResponseEntity<House> getHouse(@PathVariable("id") Long id) {
         House house = houseService.findById(id);
@@ -83,7 +92,7 @@ public class HouseController {
         return new ResponseEntity<House>(HttpStatus.NO_CONTENT);
     }
 
-        @GetMapping("/api/findAllBySoLuongPhongNguLessThanEqualAndTrangThai")
+    @GetMapping("/api/findAllBySoLuongPhongNguLessThanEqualAndTrangThai")
     public ResponseEntity<Iterable<House>> findAllBySoLuongPhongNguAndTrangThai(@RequestParam("house") String house) {
         Iterable<House> houses = houseService.findAllBySoLuongPhongNguLessThanEqualAndTrangThai(Integer.parseInt(house), "Trống");
         if (house == null) {
