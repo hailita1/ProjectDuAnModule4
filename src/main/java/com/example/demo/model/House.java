@@ -26,6 +26,14 @@ public class House {
 
     private String trangThai;
 
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
     @ManyToOne
     @JoinColumn(name = "loaiNha_id")
     private CategoryHouse categoryHouse;

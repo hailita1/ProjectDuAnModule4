@@ -22,9 +22,10 @@ public class HouseController {
 
     @RequestMapping(value = "/api/houses", method = RequestMethod.GET)
     public ResponseEntity<Iterable<House>> listAllHouse() {
-        Iterable<House> houses = houseService.findAll();
+        Iterable<House> houses = houseService.findAllByTrangThai("Trống");
         if (houses == null) {
             return new ResponseEntity<Iterable<House>>(HttpStatus.NO_CONTENT);
+
         }
         return new ResponseEntity<Iterable<House>>(houses, HttpStatus.OK);
     }
@@ -54,25 +55,6 @@ public class HouseController {
         headers.setLocation(ucBuilder.path("/houses/{id}").buildAndExpand(house.getIdNha()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
-
-//    @PostMapping("/api/houses")
-//    public ResponseEntity createHouse(@RequestBody House house) {
-//        try {
-//            houseService.save(house);
-//            Iterable<House> houses = houseService.findAll();
-//            House house1 = new House();
-//            for (House house2 : houses) {
-//                house1 = house2;
-//            }
-//            for (Image picture : house.getPicture()) {
-//                picture.setHouse(house1);
-//                imageService.save(picture);
-//            }
-//            return new ResponseEntity(HttpStatus.CREATED);
-//        } catch (Exception e) {
-//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-//        }
-//    }
 
     @RequestMapping(value = "/api/houses/{id}", method = RequestMethod.PUT)
     public ResponseEntity<House> updateHouse(@PathVariable("id") Long id, @RequestBody House house) {

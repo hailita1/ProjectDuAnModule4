@@ -61,4 +61,9 @@ public class HouseServiceImpl implements HouseService {
         return findAllBySoLuongPhongNguContainsAndDiaChiContainsAndSoLuongPhongTamContains(soLuongPhongNgu, diaChi, soLuongPhongTam);
     }
 
+    @Override
+    public Iterable<House> findAllByTrangThai(String trangThai) {
+        return houseRepository.findAllByTrangThai(trangThai);
+    }
+
 }
