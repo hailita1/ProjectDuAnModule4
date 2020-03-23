@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Host;
 import com.example.demo.model.House;
 import com.example.demo.model.Image;
+import com.example.demo.service.HostService;
 import com.example.demo.service.impl.HouseServiceImpl;
 import com.example.demo.service.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class HouseController {
 
     @Autowired
     private ImageServiceImpl imageService;
+
+    @Autowired
+    private HostService hostService;
 
     @RequestMapping(value = "/api/houses", method = RequestMethod.GET)
     public ResponseEntity<Iterable<House>> listAllHouse() {
@@ -50,13 +55,8 @@ public class HouseController {
     @RequestMapping(value = "/api/houses", method = RequestMethod.POST)
     public ResponseEntity<Void> createHouse(@RequestBody House house, UriComponentsBuilder ucBuilder) {
         houseService.save(house);
-        Iterable<House> houses = houseService.findAll();
-        House house1 = new House();
-        for (House house2 : houses) {
-            house1 = house2;
-        }
         for (Image image : house.getPicture()) {
-            image.setHouse(house1);
+            image.setHouse(house);
             imageService.save(image);
         }
         HttpHeaders headers = new HttpHeaders();
@@ -78,6 +78,12 @@ public class HouseController {
         houseServiceById.setMoTaChung(house.getMoTaChung());
         houseServiceById.setGiaTienTheoDem(house.getGiaTienTheoDem());
         houseServiceById.setTrangThai(house.getTrangThai());
+        houseServiceById.setCategoryHouse(house.getCategoryHouse());
+        houseServiceById.setCategoryRoom(house.getCategoryRoom());
+        for (Image image : house.getPicture()) {
+            image.setHouse(house);
+            imageService.save(image);
+        }
         houseService.save(houseServiceById);
         return new ResponseEntity<House>(HttpStatus.OK);
     }
@@ -95,7 +101,7 @@ public class HouseController {
     @GetMapping("/api/findAllBySoLuongPhongNguLessThanEqualAndTrangThai")
     public ResponseEntity<Iterable<House>> findAllBySoLuongPhongNguAndTrangThai(@RequestParam("house") String house) {
         Iterable<House> houses = houseService.findAllBySoLuongPhongNguLessThanEqualAndTrangThai(Integer.parseInt(house), "Trống");
-        if (house == null) {
+        if (houses == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(houses, HttpStatus.OK);
@@ -104,7 +110,7 @@ public class HouseController {
     @GetMapping("/api/findAllBySoLuongPhongTamLessThanEqualAndTrangThai")
     public ResponseEntity<Iterable<House>> findAllBySoLuongPhongTamLessThanEqualAndTrangThai(@RequestParam("house") String house) {
         Iterable<House> houses = houseService.findAllBySoLuongPhongTamLessThanEqualAndTrangThai(Integer.parseInt(house), "Trống");
-        if (house == null) {
+        if (houses == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(houses, HttpStatus.OK);
@@ -114,7 +120,7 @@ public class HouseController {
     @GetMapping("/api/findAllByDiaChiContainsAndTrangThai")
     public ResponseEntity<Iterable<House>> findAllByDiaChiContainsAndTrangThai(@RequestParam("house") String house) {
         Iterable<House> houses = houseService.findAllByDiaChiContainsAndTrangThai(house, "Trống");
-        if (house == null) {
+        if (houses == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(houses, HttpStatus.OK);
@@ -123,6 +129,15 @@ public class HouseController {
     @GetMapping("/api/findAllByGiaTienTheoDemBetweenAndTrangThai")
     public ResponseEntity<Iterable<House>> findAllByGiaTienTheoDemBetweenAndTrangThai(@RequestParam("dauDuoi") String dauDuoi, @RequestParam("dauTren") String dauTren) {
         Iterable<House> houses = houseService.findAllByGiaTienTheoDemBetweenAndTrangThai(Double.parseDouble(dauDuoi), Double.parseDouble(dauTren), "Trống");
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/findAllByHost")
+    public ResponseEntity<Iterable<House>> findAllByHost(@RequestParam("host") Host id) {
+        Iterable<House> houses = houseService.findAllByHost(id);
         if (houses == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

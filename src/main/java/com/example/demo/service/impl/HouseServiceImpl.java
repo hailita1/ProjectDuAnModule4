@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.Host;
 import com.example.demo.model.House;
 import com.example.demo.repository.HouseRepository;
 import com.example.demo.service.HouseService;
@@ -55,6 +56,11 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Iterable<House> findAllByTrangThai(String trangThai) {
         return houseRepository.findAllByTrangThai(trangThai);
+    }
+
+    @Override
+    public Iterable<House> findAllByHost(Host host) {
+        return houseRepository.findAllByHost(host);
     }
 
 }
