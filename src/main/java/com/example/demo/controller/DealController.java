@@ -17,7 +17,7 @@ public class DealController {
     @Autowired
     private DealServiceImpl dealService;
 
-    @RequestMapping(value = "/api/deals", method = RequestMethod.GET)
+    @RequestMapping(value = "/apideals/", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Deal>> listAllDeal() {
         Iterable<Deal> deals = dealService.findAll();
         if (deals == null) {

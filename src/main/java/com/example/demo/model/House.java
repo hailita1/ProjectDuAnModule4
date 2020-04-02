@@ -52,7 +52,7 @@ public class House {
     private Host host;
 
 
-    @OneToMany(targetEntity = Image.class, mappedBy = "house")
+    @OneToMany(targetEntity = Image.class, mappedBy = "house", cascade = CascadeType.REMOVE)
     private List<Image> picture;
 
     @OneToMany(mappedBy = "customer")

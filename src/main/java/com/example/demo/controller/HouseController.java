@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.model.Host;
 import com.example.demo.model.House;
 import com.example.demo.model.Image;
-import com.example.demo.service.HostService;
 import com.example.demo.service.impl.HouseServiceImpl;
 import com.example.demo.service.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 public class HouseController {
@@ -21,9 +22,6 @@ public class HouseController {
 
     @Autowired
     private ImageServiceImpl imageService;
-
-    @Autowired
-    private HostService hostService;
 
     @RequestMapping(value = "/api/houses", method = RequestMethod.GET)
     public ResponseEntity<Iterable<House>> listAllHouse() {
@@ -67,7 +65,7 @@ public class HouseController {
     @RequestMapping(value = "/api/houses/{id}", method = RequestMethod.PUT)
     public ResponseEntity<House> updateHouse(@PathVariable("id") Long id, @RequestBody House house) {
         House houseServiceById = houseService.findById(id);
-
+        List<Image> imageListFound = houseServiceById.getPicture(); // mang anh goc
         if (houseServiceById == null) {
             return new ResponseEntity<House>(HttpStatus.NOT_FOUND);
         }
@@ -80,9 +78,20 @@ public class HouseController {
         houseServiceById.setTrangThai(house.getTrangThai());
         houseServiceById.setCategoryHouse(house.getCategoryHouse());
         houseServiceById.setCategoryRoom(house.getCategoryRoom());
-        for (Image image : house.getPicture()) {
-            image.setHouse(house);
-            imageService.save(image);
+//        for (Image image : house.getPicture()) {
+//            image.setHouse(house);
+//            imageService.save(image);
+//        }
+        List<Image> imageList = house.getPicture(); // mang anh lay ve
+        for (Image image : imageList) {
+            if (image.getIdAnh() == null) {
+                image.setHouse(houseServiceById);
+                imageService.save(image);
+//                houseServiceById.getPicture().add(image);
+            } else {
+                imageService.remove(image.getIdAnh());
+                houseServiceById.getPicture().remove(image);
+            }
         }
         houseService.save(houseServiceById);
         return new ResponseEntity<House>(HttpStatus.OK);
