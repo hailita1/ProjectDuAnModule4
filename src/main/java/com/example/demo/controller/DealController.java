@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Customer;
 import com.example.demo.model.Deal;
-import com.example.demo.model.Host;
 import com.example.demo.service.impl.DealServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

@@ -90,7 +90,7 @@ public class HouseController {
 //                houseServiceById.getPicture().add(image);
             } else {
                 imageService.remove(image.getIdAnh());
-                houseServiceById.getPicture().remove(image);
+//                houseServiceById.getPicture().remove(image);
             }
         }
         houseService.save(houseServiceById);
