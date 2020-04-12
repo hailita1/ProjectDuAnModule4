@@ -1,7 +1,7 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Host;
 import com.example.demo.model.House;
+import com.example.demo.model.User;
 import com.example.demo.repository.HouseRepository;
 import com.example.demo.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +59,8 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public Iterable<House> findAllByHost(Host host) {
-        return houseRepository.findAllByHost(host);
+    public Iterable<House> findAllByUser(User user) {
+        return houseRepository.findAllByUser(user);
     }
 
 }

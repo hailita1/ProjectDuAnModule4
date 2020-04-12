@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -50,13 +51,13 @@ public class House {
     private CategoryRoom categoryRoom;
 
     @ManyToOne
-    @JoinColumn(name = "chunha_id")
-    private Host host;
+    @JoinColumn(name = "id_user")
+    private User user;
 
     @JsonManagedReference
     @OneToMany(targetEntity = Image.class, mappedBy = "house", cascade = CascadeType.REMOVE)
     private List<Image> picture;
-
-    @OneToMany(mappedBy = "customer")
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
     private List<Deal> deals;
 }

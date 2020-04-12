@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Host;
 import com.example.demo.model.House;
+import com.example.demo.model.User;
 
 public interface HouseService {
     Iterable<House> findAll();
@@ -22,5 +22,5 @@ public interface HouseService {
 
     Iterable<House> findAllByTrangThai(String trangThai);
 
-    Iterable<House> findAllByHost(Host host);
+    Iterable<House> findAllByUser(User User);
 }

@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Host;
 import com.example.demo.model.House;
 import com.example.demo.model.Image;
+import com.example.demo.model.User;
 import com.example.demo.service.impl.HouseServiceImpl;
 import com.example.demo.service.impl.ImageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,8 +145,8 @@ public class HouseController {
     }
 
     @GetMapping("/api/findAllByHost")
-    public ResponseEntity<Iterable<House>> findAllByHost(@RequestParam("host") Host id) {
-        Iterable<House> houses = houseService.findAllByHost(id);
+    public ResponseEntity<Iterable<House>> findAllByHost(@RequestParam("user") User id) {
+        Iterable<House> houses = houseService.findAllByUser(id);
         if (houses == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -1,7 +1,7 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Host;
 import com.example.demo.model.House;
+import com.example.demo.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HouseRepository extends JpaRepository<House, Long> {
@@ -16,5 +16,5 @@ public interface HouseRepository extends JpaRepository<House, Long> {
 
     Iterable<House> findAllByTrangThai(String trangThai);
 
-    Iterable<House> findAllByHost(Host host);
+    Iterable<House> findAllByUser(User user);
 }
