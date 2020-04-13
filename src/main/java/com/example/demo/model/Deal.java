@@ -24,6 +24,9 @@ public class Deal {
     private String danhGia;
 
     @Column
+    private String phanHoi;
+
+    @Column
     private String trangThai;
 
     @Column
