@@ -21,6 +21,8 @@ public class User {
 
     private String hoTen;
 
+    private String sdt;
+
     private String diaChi;
 
     @ManyToMany

@@ -21,7 +21,7 @@ public class Deal {
     private Date ngayDi;
 
     @Column
-    private String danhGia;
+    private int danhGia;
 
     @Column
     private String phanHoi;
