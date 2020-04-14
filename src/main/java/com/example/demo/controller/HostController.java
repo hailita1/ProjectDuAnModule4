@@ -51,6 +51,7 @@ public class HostController {
         host1.setDiaChi(host.getDiaChi());
         host1.setPassword(host.getPassword());
         host1.setHoTen(host.getHoTen());
+        host1.setSdt(host.getSdt());
 
         hostService.save(host1);
         return new ResponseEntity<Host>(HttpStatus.OK);

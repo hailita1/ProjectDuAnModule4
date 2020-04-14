@@ -20,4 +20,7 @@ public class Host {
     private String hoTen;
 
     private String diaChi;
+
+    private String sdt;
+
 }
