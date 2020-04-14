@@ -78,19 +78,13 @@ public class HouseController {
         houseServiceById.setTrangThai(house.getTrangThai());
         houseServiceById.setCategoryHouse(house.getCategoryHouse());
         houseServiceById.setCategoryRoom(house.getCategoryRoom());
-//        for (Image image : house.getPicture()) {
-//            image.setHouse(house);
-//            imageService.save(image);
-//        }
         List<Image> imageList = house.getPicture(); // mang anh lay ve
         for (Image image : imageList) {
             if (image.getIdAnh() == null) {
                 image.setHouse(houseServiceById);
                 imageService.save(image);
-//                houseServiceById.getPicture().add(image);
             } else {
                 imageService.remove(image.getIdAnh());
-//                houseServiceById.getPicture().remove(image);
             }
         }
         houseService.save(houseServiceById);
@@ -108,7 +102,7 @@ public class HouseController {
     }
 
     @GetMapping("/api/findAllBySoLuongPhongNguLessThanEqualAndTrangThai")
-    public ResponseEntity<Iterable<House>> findAllBySoLuongPhongNguAndTrangThai(@RequestParam("house") String house) {
+    public ResponseEntity<Iterable<House>> findAllBySoLuongPhongNguAndTrangThai(@RequestParam("house") String house, String type) {
         Iterable<House> houses = houseService.findAllBySoLuongPhongNguLessThanEqualAndTrangThai(Integer.parseInt(house), "Trống");
         if (houses == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -22,5 +22,4 @@ public class Host {
     private String diaChi;
 
     private String sdt;
-
 }
