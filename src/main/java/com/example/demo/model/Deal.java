@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Deal {
     private Date ngayDi;
 
     @Column
-    private String danhGia;
+    private int danhGia;
 
     @Column
     private String trangThai;
@@ -28,12 +29,15 @@ public class Deal {
     @Column
     private Double thanhTien;
 
-    @JsonIgnore
+    @Column
+    private String phanHoi;
+
+    @JsonManagedReference
     @ManyToOne
     @MapsId("idNha")
     private House house;
 
-    @JsonIgnore
+    @JsonManagedReference
     @ManyToOne
     @MapsId("idCustomer")
     private Customer customer;

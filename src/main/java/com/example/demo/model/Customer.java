@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -32,6 +34,7 @@ public class Customer {
 
     @Column
     private int sdt;
+    @JsonBackReference
     @OneToMany(mappedBy = "house")
     private List<Deal> deals;
 

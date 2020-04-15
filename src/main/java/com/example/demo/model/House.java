@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -56,7 +55,7 @@ public class House {
     @JsonManagedReference
     @OneToMany(targetEntity = Image.class, mappedBy = "house", cascade = CascadeType.REMOVE)
     private List<Image> picture;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "customer")
     private List<Deal> deals;
 }
