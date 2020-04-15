@@ -56,7 +56,7 @@ public class House {
     @JsonManagedReference
     @OneToMany(targetEntity = Image.class, mappedBy = "house", cascade = CascadeType.REMOVE)
     private List<Image> picture;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "customer")
     private List<Deal> deals;
 }
