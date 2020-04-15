@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -37,8 +38,10 @@ public class Deal {
     @MapsId("idNha")
     private House house;
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @ManyToOne
-    @MapsId("idCustomer")
+    @Getter(AccessLevel.NONE)
+    @JoinColumn(name = "id_customer", updatable = false)
+//    @MapsId("idCustomer")
     private Customer customer;
 }

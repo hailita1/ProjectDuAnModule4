@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,7 +50,9 @@ public class House {
     private CategoryRoom categoryRoom;
 
     @ManyToOne
-    @JoinColumn(name = "chunha_id")
+    @Getter(AccessLevel.NONE)
+    @JoinColumn(name = "chunha_id", updatable = false)
+//    @JoinColumn(name = "chunha_id")
     private Host host;
 
     @JsonManagedReference
