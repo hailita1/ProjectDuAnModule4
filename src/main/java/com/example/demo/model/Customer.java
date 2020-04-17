@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -34,7 +35,7 @@ public class Customer {
     @Column
     private int sdt;
     @JsonBackReference
-    @OneToMany(mappedBy = "house")
-    private List<Deal> deals;
+    @OneToMany(mappedBy = "customer")
+    Set<Deal> deals;
 
 }

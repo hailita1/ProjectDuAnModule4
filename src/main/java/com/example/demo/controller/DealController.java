@@ -53,7 +53,10 @@ public class DealController {
         deal1.setDanhGia(deal.getDanhGia());
         deal1.setTrangThai(deal.getTrangThai());
         deal1.setThanhTien(deal.getThanhTien());
+        deal1.setPhanHoi(deal.getPhanHoi());
         deal1.setHouse(deal.getHouse());
+        deal1.setCustomer(deal.getCustomer());
+        dealService.save(deal1);
         return new ResponseEntity<Deal>(HttpStatus.OK);
     }
 
