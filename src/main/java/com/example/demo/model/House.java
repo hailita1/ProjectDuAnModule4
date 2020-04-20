@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -56,7 +57,8 @@ public class House {
     @JsonManagedReference
     @OneToMany(targetEntity = Image.class, mappedBy = "house", cascade = CascadeType.REMOVE)
     private List<Image> picture;
+
     @JsonBackReference
-    @OneToMany(mappedBy = "customer")
-    private List<Deal> deals;
+    @OneToMany(mappedBy = "house")
+    Set<Deal> deals;
 }
