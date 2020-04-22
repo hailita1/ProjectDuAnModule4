@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.House;
 import com.example.demo.model.Image;
 import com.example.demo.repository.ImageRepository;
 import com.example.demo.service.ImageService;
@@ -29,5 +30,10 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public void remove(Long id) {
         imageRepository.deleteById(id);
+    }
+
+    @Override
+    public Iterable<Image> findAllByHouse(House house) {
+        return imageRepository.findAllByHouse(house);
     }
 }

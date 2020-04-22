@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Host;
 import com.example.demo.model.House;
 import com.example.demo.model.Image;
 import com.example.demo.service.impl.ImageServiceImpl;
@@ -61,5 +62,14 @@ public class ImageController {
         }
         imageService.remove(id);
         return new ResponseEntity<Image>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/api/findAllByHouse")
+    public ResponseEntity<Iterable<Image>> findAllByHouse(@RequestParam("house") House id) {
+        Iterable<Image> houses = imageService.findAllByHouse(id);
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
     }
 }
