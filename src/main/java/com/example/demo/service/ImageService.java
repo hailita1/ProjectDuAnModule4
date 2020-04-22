@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.House;
 import com.example.demo.model.Image;
 
 public interface ImageService {
@@ -10,4 +11,6 @@ public interface ImageService {
     void save(Image image);
 
     void remove(Long id);
+
+    Iterable<Image> findAllByHouse(House house);
 }

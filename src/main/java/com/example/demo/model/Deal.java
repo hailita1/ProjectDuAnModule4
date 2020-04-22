@@ -32,10 +32,10 @@ public class Deal {
     private String phanHoi;
 
     @ManyToOne
-    @JoinColumn(name = "house_id")
+    @JoinColumn(name = "id_nha")
     private House house;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "id_customer")
     private Customer customer;
 }
