@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Customer;
 import com.example.demo.model.Deal;
+import com.example.demo.model.House;
+import com.example.demo.model.Image;
 import com.example.demo.service.impl.DealServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -68,5 +71,14 @@ public class DealController {
         }
         dealService.remove(id);
         return new ResponseEntity<Deal>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/api/findAllCustomer")
+    public ResponseEntity<Iterable<Deal>> findAllCustomer(@RequestParam("customer") Customer id) {
+        Iterable<Deal> deals = dealService.findAllByCustomer(id);
+        if (deals == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(deals, HttpStatus.OK);
     }
 }

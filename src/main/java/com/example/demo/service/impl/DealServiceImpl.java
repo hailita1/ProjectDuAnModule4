@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.Customer;
 import com.example.demo.model.Deal;
 import com.example.demo.repository.DealRepository;
 import com.example.demo.service.DealService;
@@ -29,5 +30,10 @@ public class DealServiceImpl implements DealService {
     @Override
     public void remove(Long id) {
         dealRepository.deleteById(id);
+    }
+
+    @Override
+    public Iterable<Deal> findAllByCustomer(Customer customer) {
+        return dealRepository.findAllByCustomer(customer);
     }
 }

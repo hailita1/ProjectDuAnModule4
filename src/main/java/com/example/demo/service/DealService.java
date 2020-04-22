@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Customer;
 import com.example.demo.model.Deal;
 
 public interface DealService {
@@ -10,4 +11,6 @@ public interface DealService {
     void save(Deal deal);
 
     void remove(Long id);
+
+    Iterable<Deal> findAllByCustomer(Customer customer);
 }
