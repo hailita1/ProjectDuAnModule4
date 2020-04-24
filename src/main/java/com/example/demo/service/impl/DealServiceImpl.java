@@ -2,6 +2,7 @@ package com.example.demo.service.impl;
 
 import com.example.demo.model.Customer;
 import com.example.demo.model.Deal;
+import com.example.demo.model.House;
 import com.example.demo.repository.DealRepository;
 import com.example.demo.service.DealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class DealServiceImpl implements DealService {
     @Override
     public Iterable<Deal> findAllByCustomer(Customer customer) {
         return dealRepository.findAllByCustomer(customer);
+    }
+
+    @Override
+    public Iterable<Deal> findAllByHouse(House house) {
+        return dealRepository.findAllByHouse(house);
     }
 }
