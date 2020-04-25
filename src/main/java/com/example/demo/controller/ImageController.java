@@ -66,10 +66,10 @@ public class ImageController {
 
     @GetMapping("/api/findAllByHouse")
     public ResponseEntity<Iterable<Image>> findAllByHouse(@RequestParam("house") House id) {
-        Iterable<Image> houses = imageService.findAllByHouse(id);
-        if (houses == null) {
+        Iterable<Image> images = imageService.findAllByHouse(id);
+        if (images == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(houses, HttpStatus.OK);
+        return new ResponseEntity<>(images, HttpStatus.OK);
     }
 }
