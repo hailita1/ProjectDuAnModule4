@@ -13,7 +13,7 @@ public interface DealService {
 
     void remove(Long id);
 
-    Iterable<Deal> findAllByCustomer(Customer customer);
+    Iterable<Deal> findAllByCustomerAndTrangThai(Customer customer, String trangThai);
 
     Iterable<Deal> findAllByHouse(House house);
 }

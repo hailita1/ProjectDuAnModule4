@@ -152,4 +152,14 @@ public class HouseController {
         }
         return new ResponseEntity<>(houses, HttpStatus.OK);
     }
+
+//    @GetMapping("/api/search/{id}")
+//    public ResponseEntity<Iterable<House>> Search(@RequestParam("search") String search, @PathVariable("id") String id) {
+//        id = id.split(1);
+//        Iterable<House> houses = houseService.findAllByHost(search);
+//        if (houses == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(houses, HttpStatus.OK);
+//    }
 }
