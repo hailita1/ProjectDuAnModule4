@@ -82,6 +82,16 @@ public class DealController {
         return new ResponseEntity<>(deals, HttpStatus.OK);
     }
 
+    @GetMapping("/api/findByIdCustomerDeal")
+    public ResponseEntity<Iterable<Deal>> findAllCustomerDeal(@RequestParam("customer") Customer id) {
+        Iterable<Deal> deals = dealService.findAllByCustomerAndTrangThai(id, "Trả phòng");
+        if (deals == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(deals, HttpStatus.OK);
+    }
+
+
     @GetMapping("/api/findByIdHouse")
     public ResponseEntity<Iterable<Deal>> findAllHouse(@RequestParam("house") House id) {
         Iterable<Deal> deals = dealService.findAllByHouse(id);
