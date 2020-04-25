@@ -34,9 +34,10 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public Iterable<Deal> findAllByCustomer(Customer customer) {
-        return dealRepository.findAllByCustomer(customer);
+    public Iterable<Deal> findAllByCustomerAndTrangThai(Customer customer, String trangThai) {
+        return dealRepository.findAllByCustomerAndTrangThai(customer, trangThai);
     }
+
 
     @Override
     public Iterable<Deal> findAllByHouse(House house) {

@@ -6,7 +6,7 @@ import com.example.demo.model.House;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DealRepository extends JpaRepository<Deal, Long> {
-    Iterable<Deal> findAllByCustomer(Customer customer);
+    Iterable<Deal> findAllByCustomerAndTrangThai(Customer customer, String trangThai);
 
     Iterable<Deal> findAllByHouse(House house);
 }
