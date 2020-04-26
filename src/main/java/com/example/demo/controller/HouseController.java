@@ -153,7 +153,7 @@ public class HouseController {
         return new ResponseEntity<>(houses, HttpStatus.OK);
     }
 
-//    @GetMapping("/api/search/{id}")
+    //    @GetMapping("/api/search/{id}")
 //    public ResponseEntity<Iterable<House>> Search(@RequestParam("search") String search, @PathVariable("id") String id) {
 //        id = id.split(1);
 //        Iterable<House> houses = houseService.findAllByHost(search);
@@ -162,4 +162,12 @@ public class HouseController {
 //        }
 //        return new ResponseEntity<>(houses, HttpStatus.OK);
 //    }
+    @RequestMapping(value = "/api/housess", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<House>> listHouseDeal() {
+        Iterable<House> houses = houseService.findAllByTrangThai("Đã thuê");
+        if (houses == null) {
+            return new ResponseEntity<Iterable<House>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<Iterable<House>>(houses, HttpStatus.OK);
+    }
 }
