@@ -97,6 +97,18 @@ public class HouseController {
         return new ResponseEntity<House>(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/api/housesss/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<House> updateHouses(@PathVariable("id") Long id, @RequestBody House house) {
+        House houseServiceById = houseService.findById(id);
+        List<Image> imageListFound = houseServiceById.getPicture(); // mang anh goc
+        if (houseServiceById == null) {
+            return new ResponseEntity<House>(HttpStatus.NOT_FOUND);
+        }
+        houseServiceById.setTrangThai(house.getTrangThai());
+        houseService.save(houseServiceById);
+        return new ResponseEntity<House>(HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/api/houses/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<House> deleteHouse(@PathVariable("id") Long id) {
         House house = houseService.findById(id);
@@ -162,12 +174,4 @@ public class HouseController {
 //        }
 //        return new ResponseEntity<>(houses, HttpStatus.OK);
 //    }
-    @RequestMapping(value = "/api/housess", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<House>> listHouseDeal() {
-        Iterable<House> houses = houseService.findAllByTrangThai("Đã thuê");
-        if (houses == null) {
-            return new ResponseEntity<Iterable<House>>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<Iterable<House>>(houses, HttpStatus.OK);
-    }
 }

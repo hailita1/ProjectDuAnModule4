@@ -23,4 +23,5 @@ public interface HouseService {
     Iterable<House> findAllByTrangThai(String trangThai);
 
     Iterable<House> findAllByHost(Host host);
+
 }

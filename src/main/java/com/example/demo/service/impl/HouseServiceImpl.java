@@ -62,5 +62,4 @@ public class HouseServiceImpl implements HouseService {
     public Iterable<House> findAllByHost(Host host) {
         return houseRepository.findAllByHost(host);
     }
-
 }
