@@ -75,7 +75,7 @@ public class DealController {
         }
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
-        long dealTime = deal.get().getNgayDi().getTime();
+        long dealTime = deal.get().getNgayDen().getTime();
         long currentTime = date.getTime();
         long timeDemo = dealTime - currentTime;
         if (timeDemo > oneDay || timeDemo < 0) {
