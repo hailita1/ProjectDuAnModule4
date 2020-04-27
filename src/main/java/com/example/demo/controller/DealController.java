@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import com.example.demo.model.Customer;
 import com.example.demo.model.Deal;
 import com.example.demo.model.House;
-import com.example.demo.model.Image;
 import com.example.demo.service.impl.DealServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,13 +11,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
 public class DealController {
     @Autowired
     private DealServiceImpl dealService;
+    private long oneDay = 86400000;
 
     @RequestMapping(value = "/api/deals", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Deal>> listAllDeal() {
@@ -67,12 +69,21 @@ public class DealController {
 
     @RequestMapping(value = "/api/deals/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Deal> deleteDeal(@PathVariable("id") Long id) {
-        Deal deal = dealService.findById(id);
+        Optional<Deal> deal = Optional.ofNullable(dealService.findById(id));
         if (deal == null) {
             return new ResponseEntity<Deal>(HttpStatus.NOT_FOUND);
         }
-        dealService.remove(id);
-        return new ResponseEntity<Deal>(HttpStatus.NO_CONTENT);
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        long dealTime = deal.get().getNgayDi().getTime();
+        long currentTime = date.getTime();
+        long timeDemo = dealTime - currentTime;
+        if (timeDemo > oneDay || timeDemo < 0) {
+            dealService.remove(id);
+        } else {
+            return new ResponseEntity<Deal>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Deal>(HttpStatus.OK);
     }
 
     @GetMapping("/api/findByIdCustomer")
