@@ -23,4 +23,6 @@ public interface HouseService {
     Iterable<House> findAllBySoLuongPhongTamOrDiaChiContainsOrSoLuongPhongNguOrGiaTienTheoDemBetween(int slpt, String diaChi, int slpn, Double dauDuoi, Double dauTren);
 
     Iterable<House> findAllByGiaTienTheoDemBetweenOrDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTam(Double dauDuoi, Double dauTren, String diaChi, int slpn, int slpt);
+
+    Iterable<House> findAllByDiaChiContainsAndSoLuongPhongTamOrSoLuongPhongNguOrGiaTienTheoDemBetween(String diaChi, int slpt, int slpn, Double dauDuoi, Double dauTren);
 }

@@ -4,8 +4,6 @@ import com.example.demo.model.Host;
 import com.example.demo.model.House;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.lang.annotation.Documented;
-
 public interface HouseRepository extends JpaRepository<House, Long> {
     Iterable<House> findAllByTrangThai(String trangThai);
 
@@ -19,5 +17,7 @@ public interface HouseRepository extends JpaRepository<House, Long> {
     Iterable<House> findAllBySoLuongPhongTamOrDiaChiContainsOrSoLuongPhongNguOrGiaTienTheoDemBetween(int slpt, String diaChi, int slpn, Double dauDuoi, Double dauTren);
 
     Iterable<House> findAllByGiaTienTheoDemBetweenOrDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTam(Double dauDuoi, Double dauTren, String diaChi, int slpn, int slpt);
+
     //Tìm kiếm theo 2 tiêu chí
+    Iterable<House> findAllByDiaChiContainsAndSoLuongPhongTamOrSoLuongPhongNguOrGiaTienTheoDemBetween(String diaChi, int slpt, int slpn, Double dauDuoi, Double dauTren);
 }

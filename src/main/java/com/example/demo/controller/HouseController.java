@@ -179,4 +179,18 @@ public class HouseController {
         }
         return new ResponseEntity<>(houses, HttpStatus.OK);
     }
+
+    @GetMapping("/api/searchs5")
+    public ResponseEntity<Iterable<House>> Seach5(@RequestParam("diaChi") String diaChi,
+                                                  @RequestParam("slpn") String slpn,
+                                                  @RequestParam("slpt") String slpt,
+                                                  @RequestParam("dauTren") String dauTren,
+                                                  @RequestParam("dauDuoi") String dauDuoi) {
+        Iterable<House> houses = houseService.findAllByTrangThai(trangThai);
+        houses = houseService.findAllByDiaChiContainsAndSoLuongPhongTamOrSoLuongPhongNguOrGiaTienTheoDemBetween(diaChi, Integer.parseInt(slpt), Integer.parseInt(slpn), Double.parseDouble(dauDuoi), Double.parseDouble(dauTren));
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
 }

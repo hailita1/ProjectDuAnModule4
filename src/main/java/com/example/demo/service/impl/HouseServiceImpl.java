@@ -42,6 +42,7 @@ public class HouseServiceImpl implements HouseService {
         return houseRepository.findAllByHost(host);
     }
 
+    //Tìm kiếm theo 1 tiêu chí
     @Override
     public Iterable<House> findAllByDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTamOrGiaTienTheoDemBetween(String diaChi, int slpn, int slpt, Double dauDuoi, Double dauTren) {
         return houseRepository.findAllByDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTamOrGiaTienTheoDemBetween(diaChi, slpn, slpt, dauDuoi, dauTren);
@@ -61,5 +62,11 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Iterable<House> findAllByGiaTienTheoDemBetweenOrDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTam(Double dauDuoi, Double dauTren, String diaChi, int slpn, int slpt) {
         return houseRepository.findAllByGiaTienTheoDemBetweenOrDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTam(dauDuoi, dauTren, diaChi, slpn, slpt);
+    }
+
+    //Tìm kiếm theo 2 tiêu chí
+    @Override
+    public Iterable<House> findAllByDiaChiContainsAndSoLuongPhongTamOrSoLuongPhongNguOrGiaTienTheoDemBetween(String diaChi, int slpt, int slpn, Double dauDuoi, Double dauTren) {
+        return houseRepository.findAllByDiaChiContainsAndSoLuongPhongTamOrSoLuongPhongNguOrGiaTienTheoDemBetween(diaChi, slpt, slpn, dauDuoi, dauTren);
     }
 }
