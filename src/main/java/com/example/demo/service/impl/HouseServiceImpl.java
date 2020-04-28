@@ -33,27 +33,6 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public Iterable<House> findAllBySoLuongPhongNguLessThanEqualAndTrangThai(int soLuongPhongNgu, String trangThai) {
-        return houseRepository.findAllBySoLuongPhongNguLessThanEqualAndTrangThai(soLuongPhongNgu, trangThai);
-    }
-
-    @Override
-    public Iterable<House> findAllBySoLuongPhongTamLessThanEqualAndTrangThai(int soLuongPhongTam, String trangThai) {
-        return houseRepository.findAllBySoLuongPhongTamLessThanEqualAndTrangThai(soLuongPhongTam, trangThai);
-    }
-
-    @Override
-    public Iterable<House> findAllByDiaChiContainsAndTrangThai(String diaChi, String trangThai) {
-        return houseRepository.findAllByDiaChiContainsAndTrangThai(diaChi, trangThai);
-    }
-
-
-    @Override
-    public Iterable<House> findAllByGiaTienTheoDemBetweenAndTrangThai(Double dauDuoi, Double dauTren, String trangThai) {
-        return houseRepository.findAllByGiaTienTheoDemBetweenAndTrangThai(dauDuoi, dauTren, trangThai);
-    }
-
-    @Override
     public Iterable<House> findAllByTrangThai(String trangThai) {
         return houseRepository.findAllByTrangThai(trangThai);
     }
@@ -61,5 +40,26 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public Iterable<House> findAllByHost(Host host) {
         return houseRepository.findAllByHost(host);
+    }
+
+    @Override
+    public Iterable<House> findAllByDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTamOrGiaTienTheoDemBetween(String diaChi, int slpn, int slpt, Double dauDuoi, Double dauTren) {
+        return houseRepository.findAllByDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTamOrGiaTienTheoDemBetween(diaChi, slpn, slpt, dauDuoi, dauTren);
+    }
+
+    @Override
+    public Iterable<House> findAllBySoLuongPhongNguOrDiaChiContainsOrSoLuongPhongTamOrGiaTienTheoDemBetween(int slpn, String diaChi, int slpt, Double dauDuoi, Double dauTren) {
+        return houseRepository.findAllBySoLuongPhongNguOrDiaChiContainsOrSoLuongPhongTamOrGiaTienTheoDemBetween(slpn, diaChi, slpt, dauDuoi, dauTren);
+    }
+
+    @Override
+    public Iterable<House> findAllBySoLuongPhongTamOrDiaChiContainsOrSoLuongPhongNguOrGiaTienTheoDemBetween(int slpt, String diaChi, int slpn, Double dauDuoi, Double dauTren) {
+        return houseRepository.findAllBySoLuongPhongTamOrDiaChiContainsOrSoLuongPhongNguOrGiaTienTheoDemBetween(slpt, diaChi, slpn, dauDuoi, dauTren);
+    }
+
+
+    @Override
+    public Iterable<House> findAllByGiaTienTheoDemBetweenOrDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTam(Double dauDuoi, Double dauTren, String diaChi, int slpn, int slpt) {
+        return houseRepository.findAllByGiaTienTheoDemBetweenOrDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTam(dauDuoi, dauTren, diaChi, slpn, slpt);
     }
 }

@@ -22,10 +22,11 @@ public class HouseController {
 
     @Autowired
     private ImageServiceImpl imageService;
+    private String trangThai = "Trống";
 
     @RequestMapping(value = "/api/houses", method = RequestMethod.GET)
     public ResponseEntity<Iterable<House>> listAllHouse() {
-        Iterable<House> houses = houseService.findAllByTrangThai("Trống");
+        Iterable<House> houses = houseService.findAllByTrangThai(trangThai);
         if (houses == null) {
             return new ResponseEntity<Iterable<House>>(HttpStatus.NO_CONTENT);
         }
@@ -78,19 +79,13 @@ public class HouseController {
         houseServiceById.setTrangThai(house.getTrangThai());
         houseServiceById.setCategoryHouse(house.getCategoryHouse());
         houseServiceById.setCategoryRoom(house.getCategoryRoom());
-//        for (Image image : house.getPicture()) {
-//            image.setHouse(house);
-//            imageService.save(image);
-//        }
         List<Image> imageList = house.getPicture(); // mang anh lay ve
         for (Image image : imageList) {
             if (image.getIdAnh() == null) {
                 image.setHouse(houseServiceById);
                 imageService.save(image);
-//                houseServiceById.getPicture().add(image);
             } else {
                 imageService.remove(image.getIdAnh());
-//                houseServiceById.getPicture().remove(image);
             }
         }
         houseService.save(houseServiceById);
@@ -119,43 +114,6 @@ public class HouseController {
         return new ResponseEntity<House>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/api/findAllBySoLuongPhongNguLessThanEqualAndTrangThai")
-    public ResponseEntity<Iterable<House>> findAllBySoLuongPhongNguAndTrangThai(@RequestParam("house") String house) {
-        Iterable<House> houses = houseService.findAllBySoLuongPhongNguLessThanEqualAndTrangThai(Integer.parseInt(house), "Trống");
-        if (houses == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(houses, HttpStatus.OK);
-    }
-
-    @GetMapping("/api/findAllBySoLuongPhongTamLessThanEqualAndTrangThai")
-    public ResponseEntity<Iterable<House>> findAllBySoLuongPhongTamLessThanEqualAndTrangThai(@RequestParam("house") String house) {
-        Iterable<House> houses = houseService.findAllBySoLuongPhongTamLessThanEqualAndTrangThai(Integer.parseInt(house), "Trống");
-        if (houses == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(houses, HttpStatus.OK);
-    }
-
-
-    @GetMapping("/api/findAllByDiaChiContainsAndTrangThai")
-    public ResponseEntity<Iterable<House>> findAllByDiaChiContainsAndTrangThai(@RequestParam("house") String house) {
-        Iterable<House> houses = houseService.findAllByDiaChiContainsAndTrangThai(house, "Trống");
-        if (houses == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(houses, HttpStatus.OK);
-    }
-
-    @GetMapping("/api/findAllByGiaTienTheoDemBetweenAndTrangThai")
-    public ResponseEntity<Iterable<House>> findAllByGiaTienTheoDemBetweenAndTrangThai(@RequestParam("dauDuoi") String dauDuoi, @RequestParam("dauTren") String dauTren) {
-        Iterable<House> houses = houseService.findAllByGiaTienTheoDemBetweenAndTrangThai(Double.parseDouble(dauDuoi), Double.parseDouble(dauTren), "Trống");
-        if (houses == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(houses, HttpStatus.OK);
-    }
-
     @GetMapping("/api/findAllByHost")
     public ResponseEntity<Iterable<House>> findAllByHost(@RequestParam("host") Host id) {
         Iterable<House> houses = houseService.findAllByHost(id);
@@ -165,13 +123,60 @@ public class HouseController {
         return new ResponseEntity<>(houses, HttpStatus.OK);
     }
 
-    //    @GetMapping("/api/search/{id}")
-//    public ResponseEntity<Iterable<House>> Search(@RequestParam("search") String search, @PathVariable("id") String id) {
-//        id = id.split(1);
-//        Iterable<House> houses = houseService.findAllByHost(search);
-//        if (houses == null) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(houses, HttpStatus.OK);
-//    }
+    @GetMapping("/api/searchs1")
+    public ResponseEntity<Iterable<House>> Seach1(@RequestParam("diaChi") String diaChi,
+                                                  @RequestParam("slpn") String slpn,
+                                                  @RequestParam("slpt") String slpt,
+                                                  @RequestParam("dauTren") String dauTren,
+                                                  @RequestParam("dauDuoi") String dauDuoi) {
+
+        Iterable<House> houses = houseService.findAllByTrangThai(trangThai);
+        houses = houseService.findAllByDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTamOrGiaTienTheoDemBetween(diaChi, Integer.parseInt(slpn), Integer.parseInt(slpt), Double.parseDouble(dauDuoi), Double.parseDouble(dauTren));
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/searchs2")
+    public ResponseEntity<Iterable<House>> Seach2(@RequestParam("diaChi") String diaChi,
+                                                  @RequestParam("slpn") String slpn,
+                                                  @RequestParam("slpt") String slpt,
+                                                  @RequestParam("dauTren") String dauTren,
+                                                  @RequestParam("dauDuoi") String dauDuoi) {
+        Iterable<House> houses = houseService.findAllByTrangThai(trangThai);
+        houses = houseService.findAllBySoLuongPhongNguOrDiaChiContainsOrSoLuongPhongTamOrGiaTienTheoDemBetween(Integer.parseInt(slpn), diaChi, Integer.parseInt(slpt), Double.parseDouble(dauDuoi), Double.parseDouble(dauTren));
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/searchs3")
+    public ResponseEntity<Iterable<House>> Seach3(@RequestParam("diaChi") String diaChi,
+                                                  @RequestParam("slpn") String slpn,
+                                                  @RequestParam("slpt") String slpt,
+                                                  @RequestParam("dauTren") String dauTren,
+                                                  @RequestParam("dauDuoi") String dauDuoi) {
+        Iterable<House> houses = houseService.findAllByTrangThai(trangThai);
+        houses = houseService.findAllBySoLuongPhongTamOrDiaChiContainsOrSoLuongPhongNguOrGiaTienTheoDemBetween(Integer.parseInt(slpt), diaChi, Integer.parseInt(slpn), Double.parseDouble(dauDuoi), Double.parseDouble(dauTren));
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/searchs4")
+    public ResponseEntity<Iterable<House>> Seach4(@RequestParam("diaChi") String diaChi,
+                                                  @RequestParam("slpn") String slpn,
+                                                  @RequestParam("slpt") String slpt,
+                                                  @RequestParam("dauTren") String dauTren,
+                                                  @RequestParam("dauDuoi") String dauDuoi) {
+        Iterable<House> houses = houseService.findAllByTrangThai(trangThai);
+        houses = houseService.findAllByGiaTienTheoDemBetweenOrDiaChiContainsOrSoLuongPhongNguOrSoLuongPhongTam(Double.parseDouble(dauDuoi), Double.parseDouble(dauTren), diaChi, Integer.parseInt(slpn), Integer.parseInt(slpt));
+        if (houses == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(houses, HttpStatus.OK);
+    }
 }
