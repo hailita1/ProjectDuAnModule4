@@ -78,7 +78,7 @@ public class DealController {
         long dealTime = deal.get().getNgayDen().getTime();
         long currentTime = date.getTime();
         long timeDemo = dealTime - currentTime;
-        if (timeDemo > oneDay || timeDemo < 0) {
+        if (timeDemo > oneDay) {
             dealService.remove(id);
         } else {
             return new ResponseEntity<Deal>(HttpStatus.NOT_FOUND);

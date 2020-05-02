@@ -30,7 +30,7 @@ public class House {
 
     private String moTaChung;
 
-    private double giaTienTheoDem;
+    private Double giaTienTheoDem;
 
     private String trangThai;
 
