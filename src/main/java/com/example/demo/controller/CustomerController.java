@@ -53,6 +53,7 @@ public class CustomerController {
         customer1.setDiaChi(customer.getDiaChi());
         customer1.setCmnd(customer.getCmnd());
         customer1.setDeals(customer.getDeals());
+        customer1.setTen(customer.getTen());
         customer1.setHo(customer.getHo());
         customer1.setPassword(customer.getPassword());
         customer1.setUserName(customer.getUserName());
